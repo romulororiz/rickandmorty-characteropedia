@@ -7,8 +7,8 @@ const {
 	GraphQLList,
 } = require('graphql');
 
-const ResultsType = new GraphQLObjectType({
-	name: 'Results',
+const CharacterType = new GraphQLObjectType({
+	name: 'Character',
 	fields: () => ({
 		id: { type: GraphQLInt },
 		name: { type: GraphQLString },
@@ -57,41 +57,32 @@ const LocationType = new GraphQLObjectType({
 
 const EpisodeType = new GraphQLList(GraphQLString);
 
+const ResultType = new GraphQLObjectType({
+	name: 'Result',
+	fields: () => ({
+		info: { type: InfoType },
+		results: { type: new GraphQLList(CharacterType) },
+	}),
+});
+
 const RootQuery = new GraphQLObjectType({
 	name: 'RootQueryType',
 	fields: {
 		characters: {
-			type: new GraphQLList(ResultsType),
+			type: ResultType,
 			resolve(parent, args) {
 				return axios
 					.get('https://rickandmortyapi.com/api/character')
-					.then(res => res.data.results);
-			},
-		},
-		infoALL: {
-			type: InfoType,
-			resolve(parent, args) {
-				return axios
-					.get('https://rickandmortyapi.com/api/character')
-					.then(res => res.data.info);
+					.then(res => res.data);
 			},
 		},
 		character: {
-			type: new GraphQLList(ResultsType),
+			type: ResultType,
 			args: { name: { type: GraphQLString } },
 			resolve(parent, args) {
 				return axios
 					.get(`https://rickandmortyapi.com/api/character?name=${args.name}`)
-					.then(res => res.data.results);
-			},
-		},
-		infoCharacter: {
-			type: InfoType,
-			args: { name: { type: GraphQLString } },
-			resolve(parent, args) {
-				return axios
-					.get(`https://rickandmortyapi.com/api/character?name=${args.name}`)
-					.then(res => res.data.info);
+					.then(res => res.data);
 			},
 		},
 	},
