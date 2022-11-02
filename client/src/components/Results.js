@@ -78,6 +78,13 @@ const Results = () => {
 			});
 	};
 
+	const onClickHandler = () => {
+		setTerm('');
+		setCharStatus('');
+		setCharGender('');
+		setCharSpecies('');
+	};
+
 	return (
 		<div className='container'>
 			<div className='search-wrapper'>
@@ -97,6 +104,7 @@ const Results = () => {
 						<select
 							className='form-select'
 							name='status'
+							value={charStatus}
 							onChange={e => setCharStatus(e.target.value)}
 						>
 							<option value=''>Status</option>
@@ -112,6 +120,7 @@ const Results = () => {
 						<select
 							className='form-select'
 							name='gender'
+							value={charGender}
 							onChange={e => setCharGender(e.target.value)}
 						>
 							<option value=''>Gender</option>
@@ -127,6 +136,7 @@ const Results = () => {
 						<select
 							className='form-select'
 							name='species'
+							value={charSpecies}
 							onChange={e => setCharSpecies(e.target.value)}
 						>
 							<option value=''>Species</option>
@@ -138,6 +148,7 @@ const Results = () => {
 						</select>
 					</div>
 				</div>
+				<button onClick={onClickHandler} className='clear-btn'>clear</button>
 			</div>
 			<span className='count'>
 				{!error && results
