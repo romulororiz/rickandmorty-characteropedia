@@ -56,12 +56,11 @@ ul {
 }
 
 .showcase-heading img {
-  width: 700px;
+  width: 100% !important;
   height: 220px;
   cursor: pointer;
   background-size: cover;
 }
-
 
 .showcase h2 {
   margin-top: 15px;
@@ -71,7 +70,6 @@ ul {
   font-weight: lighter;
   color: #2cc6e5;
   -webkit-text-stroke: 1.5px #000;
-
 }
 
 .search-wrapper {
@@ -338,7 +336,6 @@ font-size: 16px;
   .card {
       width: 330px;
       flex-direction: column;
-
   }
 
   .card-image {
@@ -368,6 +365,35 @@ font-size: 16px;
   .origin h4, .last-location h4, .first-seen h4{
       font-size: 16px;
   }
+}
+
+@media (max-width: 460px) {
+  .card {
+    width: 230px;
+    flex-direction: column;
+  }
+ 
+  .text-box h2 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  }
+
+  .info-heading span p {
+    font-size: 12px;
+  }
+
+  .last-location h4, .first-seen h4{
+  font-size: 11px;
+  }
+
+  .last-location h4 span { 
+    font-size: 10px;
+  }
+
+  .first-seen a {
+    font-size: 9px;
+  }
+
 }
 
 /* Footer */
