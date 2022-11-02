@@ -148,7 +148,9 @@ const Results = () => {
 						</select>
 					</div>
 				</div>
-				<button onClick={onClickHandler} className='clear-btn'>clear</button>
+				<button onClick={onClickHandler} className='clear-btn'>
+					clear
+				</button>
 			</div>
 			<span className='count'>
 				{!error && results
@@ -178,7 +180,7 @@ const Results = () => {
 					<img src={NotFound} alt='Not Found' />
 				</div>
 			)}
-			{noData && <h3 style={{ marginTop: 30 }}>That's all</h3>}
+			{noData && !error && <h3 style={{ marginTop: 30 }}>That's all</h3>}
 		</div>
 	);
 };
