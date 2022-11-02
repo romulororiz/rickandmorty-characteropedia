@@ -135,6 +135,11 @@ font-size: 16px;
   outline: none;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
 .icon {
   background-color: #002446;
   padding: 4px;
@@ -149,7 +154,7 @@ font-size: 16px;
 
 .clear-btn {
   background-color: #df4759;
-  padding: 8px;
+  padding: 8px 16px;
   outline: none;
   border-radius: 30px;
   color: #fff;
@@ -369,7 +374,7 @@ font-size: 16px;
 
 @media (max-width: 460px) {
   .card {
-    width: 230px;
+    width: 280px;
     flex-direction: column;
   }
  
@@ -383,15 +388,15 @@ font-size: 16px;
   }
 
   .last-location h4, .first-seen h4{
-  font-size: 11px;
+  font-size: 14px;
   }
 
   .last-location h4 span { 
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .first-seen a {
-    font-size: 9px;
+    font-size: 10px;
   }
 
 }
