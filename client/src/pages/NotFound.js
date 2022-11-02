@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import NotFound from '../resources/images/not-found.png';
+import { useTitle } from 'react-use';
 
 export default function NotFoundPage() {
+	useTitle('Not Found');
+
 	return (
 		<div className='error-page'>
 			<div className='error'>
