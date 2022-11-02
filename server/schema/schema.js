@@ -70,18 +70,17 @@ const RootQuery = new GraphQLObjectType({
 	fields: {
 		characters: {
 			type: ResultType,
-			resolve(parent, args) {
-				return axios
-					.get('https://rickandmortyapi.com/api/character')
-					.then(res => res.data);
+			args: {
+				name: { type: GraphQLString },
+				status: { type: GraphQLString },
+				gender: { type: GraphQLString },
+				species: { type: GraphQLString },
 			},
-		},
-		character: {
-			type: ResultType,
-			args: { name: { type: GraphQLString } },
 			resolve(parent, args) {
 				return axios
-					.get(`https://rickandmortyapi.com/api/character?name=${args.name}`)
+					.get(
+						`https://rickandmortyapi.com/api/character?name=${args.name}&status=${args.status}&gender=${args.gender}&species=${args.species}`
+					)
 					.then(res => res.data);
 			},
 		},
