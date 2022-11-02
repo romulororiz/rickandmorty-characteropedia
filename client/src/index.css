@@ -159,6 +159,7 @@ font-size: 16px;
   margin-left: 10px;
   margin-top: 25px;
   transition: background-color .2s ease;
+  border: none;
 }
 
 .clear-btn:hover {
