@@ -14,10 +14,11 @@ const Results = () => {
 	const [charSpecies, setCharSpecies] = useState('');
 	const [charData, setCharData] = useState(null);
 	const [next, setNext] = useState(null);
-	const [results, setResults] = useState(null);
+	const [results, setResults] = useState([]);
 	const [noData, setNoData] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
-	const { loading, error, data } = useQuery(GET_CHARACTERS, {
+	const { error, data } = useQuery(GET_CHARACTERS, {
 		variables: {
 			name: term,
 			status: charStatus,
@@ -35,6 +36,7 @@ const Results = () => {
 		return () => clearTimeout(delayDebounceFn);
 	}, [data, term]);
 
+	// Get data and set it to state on render
 	useEffect(() => {
 		if (charData) {
 			setNext(charData.characters.info.next);
@@ -47,20 +49,17 @@ const Results = () => {
 		window.onscroll = () => {
 			if (
 				window.innerHeight + document.documentElement.scrollTop ===
-				document.documentElement.offsetHeight
+					document.documentElement.offsetHeight &&
+				next !== null
 			) {
-				if (next !== null) {
-					getNextCharacters(next);
-				} else {
-					setNoData(true);
-				}
+				getNextCharacters(next);
 			}
 		};
-	}, [next, results, term]);
-
+	}, [next]);
 
 	// Get next characters for infinite scroll
 	const getNextCharacters = endpoint => {
+		setIsLoading(true);
 		fetch(endpoint)
 			.then(response => response.json())
 			.then(data => {
@@ -68,20 +67,26 @@ const Results = () => {
 				const newResults = results.concat(data.results);
 				setResults(newResults);
 				setNext(data.info.next);
-				if (data.length === 0) setNoData(true);
-				if (data.results.length < 20) setNoData(true);
-				if (data.info.next === null) setNoData(true);
+				if (data.results.length < 20 || data.info.next === null) {
+					setNoData(true);
+					setIsLoading(false);
+				}
 			})
 			.catch(error => {
 				console.error('Error:', error);
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	};
 
+	// reset state
 	const onClickHandler = () => {
 		setTerm('');
 		setCharStatus('');
 		setCharGender('');
 		setCharSpecies('');
+		setNoData(false);
 	};
 
 	return (
@@ -152,7 +157,7 @@ const Results = () => {
 				</button>
 			</div>
 			<span className='count'>
-				{!error && results
+				{!error && charData
 					? term === ''
 						? `${charData && charData.characters.info.count} results`
 						: `${
@@ -160,6 +165,7 @@ const Results = () => {
 						  } results for '${term}'`
 					: ''}
 			</span>
+
 			<div className='grid'>
 				{!error &&
 					results &&
@@ -167,7 +173,8 @@ const Results = () => {
 						<CharItem key={character.id} character={character} />
 					))}
 			</div>
-			{loading && <Spinner />}
+
+			{isLoading && !error && <Spinner />}
 			{error && (
 				<div className='not-found'>
 					<h4>
