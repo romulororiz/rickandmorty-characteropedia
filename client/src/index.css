@@ -282,10 +282,11 @@ font-size: 16px;
   padding: 25px 15px;
   position: relative;
   margin-left: 5px;
+  margin-top: -8px;
 }
 
 .text-box h2 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
