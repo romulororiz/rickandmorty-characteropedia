@@ -58,7 +58,6 @@ const Results = () => {
 		};
 	}, [next, results, term]);
 
-	console.log(noData);
 
 	// Get next characters for infinite scroll
 	const getNextCharacters = endpoint => {

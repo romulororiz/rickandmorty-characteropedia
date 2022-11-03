@@ -25,6 +25,10 @@ const GET_CHARACTERS = gql`
 				status
 				species
 				gender
+				origin {
+					name
+					url
+				}
 				location {
 					name
 					url

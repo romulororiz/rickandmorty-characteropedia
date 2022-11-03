@@ -37,6 +37,19 @@ const CharItem = ({ character }) => {
 					</h4>
 				</div>
 
+				<div className='origin'>
+					<h4>
+						Origin: <br />
+						{character.origin.url !== '' ? (
+							<a target='_blank' rel='noreferrer' href={character.origin.url}>
+								{character.origin.name}
+							</a>
+						) : (
+							<span>{character.origin.name}</span>
+						)}
+					</h4>
+				</div>
+
 				<div className='first-seen'>
 					<h4>First seen:</h4>
 					<a target='_blank' href={character.episode[0]} rel='noreferrer'>

@@ -248,6 +248,7 @@ font-size: 16px;
 
 /* Char Item */
 .card {
+  height: 260px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -263,6 +264,7 @@ font-size: 16px;
   height: 100%;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  background-position: right;
 }
 
 .card p {
@@ -272,7 +274,6 @@ font-size: 16px;
 }
 
 .text-box {
-  padding: 10px 15px;
   width: 60%;
   display: flex;
   flex-direction: column;
@@ -280,6 +281,7 @@ font-size: 16px;
   text-align: left;
   padding: 25px 15px;
   position: relative;
+  margin-left: 5px;
 }
 
 .text-box h2 {
@@ -326,6 +328,11 @@ font-size: 16px;
   font-weight: 300;
 }
 
+.origin a {
+  font-size: 14px;
+  font-weight: 300;
+  color: #02BACF;
+}
 
 .first-seen a {
   font-size: 13px;
@@ -387,7 +394,7 @@ font-size: 16px;
     font-size: 12px;
   }
 
-  .last-location h4, .first-seen h4{
+  .origin h4, .last-location h4, .first-seen h4{
   font-size: 14px;
   }
 
@@ -417,7 +424,7 @@ font-size: 16px;
 .footer p {
   color: #fff;
   font-weight: 300;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 
